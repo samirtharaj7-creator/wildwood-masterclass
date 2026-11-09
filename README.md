@@ -1,6 +1,6 @@
-# Wildwood Health – Free Masterclass Landing Page
+# Wildwood – Free "Reverse Diabetes Naturally" Class
 
-A one-page sign-up site for a free online masterclass from Wildwood Health Institute.
+A one-page sign-up site for Wildwood Lifestyle Center's free online diabetes class.
 
 **Live page:** https://samirtharaj7-creator.github.io/wildwood-masterclass/
 
@@ -8,8 +8,8 @@ A one-page sign-up site for a free online masterclass from Wildwood Health Insti
 
 Open `index.html` and edit the `CONFIG` block near the bottom:
 
-- `sessionDate` – the real date and time of the next live session (it currently rolls to next Thursday, 7pm Eastern)
-- `formEndpoint` – where sign-ups should be sent (CRM or email tool webhook); until set, sign-ups are not saved
-- `youtubeId` – the hero video (currently the Wildwood Lifestyle Center tour)
+- `sessionDate` – date and time of the next live class (it currently rolls to next Thursday, 7pm Eastern)
+- `formEndpoint` – where sign-ups should be sent (CRM or email tool webhook); until this is set, sign-ups are not saved
+- `tourVideoId` – the video next to the form (currently the Wildwood Lifestyle Center tour)
 
-Guest story videos are listed in the `VIDEOS` array and are embedded from Wildwood's YouTube channel.
+The guest videos are listed in `VIDEOS`, just below `CONFIG`. They're embedded from Wildwood's YouTube channels.
