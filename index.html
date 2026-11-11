@@ -63,9 +63,9 @@
 
   /* hero */
   .hero { background: var(--tint); padding: 56px 0 70px; }
-  .hero .intro { text-align: center; max-width: 820px; margin: 0 auto 44px; }
+  .hero .intro { text-align: center; max-width: 900px; margin: 0 auto 44px; }
   .kicker { font-weight: 700; color: var(--leaf); margin-bottom: 10px; }
-  h1 { font-size: clamp(34px, 4.6vw, 52px); }
+  h1 { font-size: clamp(28px, 3.6vw, 42px); }
   .hero .lead { font-size: 20px; color: var(--muted); margin-top: 16px; }
   .hero-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 44px; align-items: start; }
 
@@ -251,18 +251,18 @@
 <section class="hero">
   <div class="wrap">
     <div class="intro">
-      <p class="kicker">Free online class from Wildwood Lifestyle Center</p>
-      <h1>Learn How to Reverse Diabetes Naturally</h1>
-      <p class="lead">In one hour, our health team will show you the diet and lifestyle changes we use with diabetes patients at Wildwood, and how you can start them at home.</p>
+      <p class="kicker">For people with Pre-Diabetes or Type 2 Diabetes — watch this before you settle for more medication.</p>
+      <h1>Discover a revolutionary approach that could eliminate your dependence on diabetes medication and insulin.</h1>
+      <p class="lead">Daniel, a registered nurse, had diabetes for over 30 years and was taking 12 medications a day. At Wildwood, he came off insulin.</p>
     </div>
 
     <div class="hero-grid">
       <div>
-        <button class="tour" id="tour" aria-label="Play a video tour of Wildwood Lifestyle Center">
-          <img src="https://i.ytimg.com/vi/hu9ThWGXuk4/maxresdefault.jpg" alt="">
+        <button class="tour" id="tour" aria-label="Play Daniel's story: a nurse with diabetes, off insulin after 30 years">
+          <img src="https://i.ytimg.com/vi/R_PX1gGuqjU/maxresdefault.jpg" alt="">
           <span class="play-btn"><svg width="24" height="24" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="#fff"/></svg></span>
         </button>
-        <p class="tour-caption">Take a short tour of Wildwood Lifestyle Center.</p>
+        <p class="tour-caption">Watch Daniel tell his story.</p>
         <ul class="facts">
           <li>Free to attend, online</li>
           <li>About an hour, with time for questions</li>
@@ -449,8 +449,8 @@ const CONFIG = {
   // Leave empty to roll to next Thursday at 7pm Eastern.
   sessionDate: '',
   sessionLengthMinutes: 60,
-  // Hero video (Wildwood Lifestyle Center tour)
-  tourVideoId: 'hu9ThWGXuk4',
+  // Video next to the form (Daniel's story)
+  tourVideoId: 'R_PX1gGuqjU',
   // Where sign-ups are sent (your CRM or email tool's webhook). Empty = nothing is sent.
   formEndpoint: '',
   title: 'Wildwood free class: Reverse Diabetes Naturally'
@@ -460,7 +460,6 @@ const CONFIG = {
 // To swap one, paste the 11-character ID from its YouTube link (watch?v=XXXXXXXXXXX).
 const VIDEOS = [
   { id: 'EMo9XgYyGI0', title: 'Rodney lowered his blood sugar naturally' },
-  { id: 'R_PX1gGuqjU', title: 'A nurse with diabetes, off insulin after 30 years' },
   { id: 'FLqFzCYqCcg', title: 'Sean asks: is reversing type 2 diabetes real?' },
   { id: 'u-9nB9RZeSg', title: '"My A1C and diabetes kept getting worse"' }
 ];
@@ -592,7 +591,7 @@ tour.addEventListener('click', () => {
   if (tour.classList.contains('playing')) return;
   if (storyPlaying) renderStories(false);
   tour.classList.add('playing');
-  tour.innerHTML = embed(CONFIG.tourVideoId, 'Wildwood Lifestyle Center tour');
+  tour.innerHTML = embed(CONFIG.tourVideoId, 'Daniel\'s story: off insulin after 30 years');
 });
 
 // testimonies: the big spot is the player; clicking a smaller video moves it into the big spot
