@@ -1,0 +1,17 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-11-22T14:21:26.536Z",
+        "reason": "Claude verified in render: full-bleed section bands; .wrap insets text 20px at 375px and 90-280px at 1280px"
+      }
+    ]
+  }
+}
