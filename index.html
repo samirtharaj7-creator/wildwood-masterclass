@@ -42,8 +42,8 @@
   h1, h2, h3 { font-family: var(--head); line-height: 1.25; color: var(--green-dark); }
   h2 { font-size: clamp(26px, 3vw, 34px); margin-bottom: 18px; }
   .wrap { width: min(1100px, 100% - 40px); margin-inline: auto; }
-  .narrow { max-width: 720px; }
-  section { padding: 80px 0; }
+  section { padding: 64px 0; }
+  figure { margin: 0; }
 
   /* top bar */
   .topbar { background: var(--green-dark); color: #e6f2ec; text-align: center; font-size: 15px; padding: 8px 16px; }
@@ -128,7 +128,21 @@
     width: 24px; height: 24px; border-radius: 50%; background: var(--green); color: #fff; font: 700 13px/24px var(--body); text-align: center; }
   .cover { counter-reset: item; }
   .cover b { color: var(--green-dark); }
-  .center { text-align: center; margin-top: 36px; }
+  /* text beside a photo */
+  .split { display: grid; grid-template-columns: 1.05fr .95fr; gap: 56px; align-items: center; }
+  .split.reverse { grid-template-columns: .9fr 1.1fr; }
+  .split-text p { max-width: 62ch; }
+  .story { padding-bottom: 40px; }
+  .cover-sec { padding-top: 40px; }
+  .photo-pair { position: relative; padding: 0 0 48px 32px; }
+  .photo-pair img, .photo-tall img, .campus img, .provider img, .faq-side img { display: block; width: 100%; height: auto; border-radius: 8px; }
+  .photo-main { aspect-ratio: 1000 / 610; object-fit: cover; }
+  .photo-inset {
+    position: absolute; left: 0; bottom: 0; width: 44% !important; max-width: 240px;
+    border: 6px solid #fff; box-shadow: 0 12px 30px -14px rgba(0, 0, 0, .35);
+  }
+  .photo-tall img { aspect-ratio: 1 / 1; object-fit: cover; object-position: 60% 50%; }
+  .cover-cta { margin-top: 28px; }
 
   /* testimonies */
   .stories { background: var(--tint); }
@@ -181,12 +195,21 @@
   .fit-box.no li { color: #555; }
 
   /* about */
-  .about { border-top: 1px solid var(--line); }
-  .about .row { display: grid; grid-template-columns: 220px 1fr; gap: 40px; align-items: start; }
-  .about p { margin-bottom: 14px; }
+  .about { padding-top: 32px; }
+  .campus img { height: 320px; object-fit: cover; }
+  .about-row { display: grid; grid-template-columns: 340px 1fr; gap: 48px; align-items: start; margin-top: -96px; padding-left: 32px; position: relative; }
+  .provider img { aspect-ratio: 410 / 250; object-fit: cover; border: 6px solid #fff; box-shadow: 0 12px 30px -14px rgba(0, 0, 0, .35); }
+  .about-text { padding-top: 120px; }
+  .about p { margin-bottom: 14px; max-width: 62ch; }
 
   /* faq */
   .faq { background: var(--tint); }
+  .faq-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 56px; align-items: start; }
+  .faq-side { position: sticky; top: 110px; }
+  .faq-side p { color: var(--muted); margin-bottom: 22px; }
+  .faq-side a { font-weight: 700; white-space: nowrap; }
+  .faq-side img { aspect-ratio: 410 / 250; object-fit: cover; max-width: 410px; }
+  .faq-list { border-top: 1px solid var(--line); }
   details { border-bottom: 1px solid var(--line); }
   summary { cursor: pointer; padding: 18px 0; font-weight: 700; font-size: 18px; color: var(--green-dark); }
   details p { padding: 0 0 18px; color: var(--muted); }
@@ -224,21 +247,29 @@
     .btn, .progress i, .mobile-cta { transition: none; }
   }
   @media (max-width: 900px) {
-    .hero-grid, .about .row, .fit { grid-template-columns: 1fr; }
-    .about img { width: 160px; }
+    .hero-grid, .fit, .split, .split.reverse, .faq-grid { grid-template-columns: 1fr; }
+    .split { gap: 32px; }
+    .split.reverse .photo-tall { order: 2; }
+    .photo-tall img { aspect-ratio: 16 / 10; }
+    .about-row { grid-template-columns: 1fr; gap: 24px; margin-top: -64px; padding: 0 20px; }
+    .provider { max-width: 340px; }
+    .about-text { padding-top: 0; }
+    .faq-side { position: static; }
+    .faq-side img { max-width: 100%; }
     .v-grid { grid-template-columns: 1fr 1fr; }
     .v-card, .v-card.side { grid-column: span 1; }
     .v-card.featured { grid-column: span 2; grid-row: auto; aspect-ratio: 16/9; }
   }
   @media (max-width: 600px) {
     body { font-size: 17px; }
-    section { padding: 56px 0; }
+    section { padding: 48px 0; }
     .hero { padding: 36px 0 50px; }
     header .wrap { height: 64px; }
     header img { height: 44px; }
     header.scrolled .btn { display: none; }
     .signup { padding: 22px 18px; }
-    .about img { display: none; }
+    .campus img { height: 200px; }
+    .photo-pair { padding: 0 0 40px 20px; }
     .v-grid { grid-template-columns: 1fr; }
     .v-card.featured { grid-column: auto; }
     .countdown div { min-width: 64px; }
@@ -342,16 +373,26 @@
 </section>
 
 <section class="story">
-  <div class="wrap narrow">
+  <div class="wrap split">
+    <div class="split-text">
     <h2>Diabetes doesn't have to keep getting worse</h2>
     <p>Most people with type 2 diabetes are told to expect the same path: one pill, then two, then insulin. Their A1C creeps up a little every year.</p>
     <p>That isn't what we usually see at Wildwood. When guests change how they eat, walk every day, drink more water and get proper sleep, their blood sugar often starts coming down within days. Many go home on less medication, and some go home on none, with their doctor's approval.</p>
     <p>This class explains how that works and what you can do about it at home.</p>
+    </div>
+    <figure class="photo-pair">
+      <img class="photo-main" src="assets/photos/bean-salad.webp" width="1000" height="610" loading="lazy" alt="A bowl of three-bean salad with kale, chickpeas and green beans">
+      <img class="photo-inset" src="assets/photos/meal.webp" width="410" height="250" loading="lazy" alt="An older man smiling as he eats a plant-based meal">
+    </figure>
   </div>
 </section>
 
-<section>
-  <div class="wrap narrow">
+<section class="cover-sec">
+  <div class="wrap split reverse">
+    <figure class="photo-tall">
+      <img src="assets/photos/lentil-loaf.webp" width="1200" height="630" loading="lazy" alt="Slices of lentil loaf beside a fresh green salad">
+    </figure>
+    <div class="split-text">
     <h2>What we'll cover</h2>
     <ol class="cover">
       <li><b>Why your blood sugar keeps climbing</b>, even when you take your medication and try to eat less sugar.</li>
@@ -359,7 +400,8 @@
       <li><b>How walking, water and sleep</b> help your body respond to insulin again.</li>
       <li><b>How to work with your doctor</b> as your numbers improve, so your medication can be adjusted safely.</li>
     </ol>
-    <div class="center"><a href="#register" class="btn">Save my spot</a></div>
+    <a href="#register" class="btn cover-cta">Save my spot</a>
+    </div>
   </div>
 </section>
 
@@ -400,25 +442,38 @@
 </section>
 
 <section class="about">
-  <div class="wrap row">
-    <img src="assets/wildwood-logo.png" alt="Wildwood Health Institute">
-    <div>
+  <div class="wrap">
+    <figure class="campus">
+      <img src="assets/photos/campus.webp" width="1000" height="350" loading="lazy" alt="Aerial view of the Wildwood campus, with open fields surrounded by woods">
+    </figure>
+    <div class="about-row">
+      <figure class="provider">
+        <img src="assets/photos/provider.webp" width="410" height="250" loading="lazy" alt="A provider in a white coat checking an older woman's blood pressure">
+      </figure>
+      <div class="about-text">
       <h2>About Wildwood</h2>
       <p>Wildwood Lifestyle Center has been helping people recover from chronic disease for over 80 years. Our clinic team treats patients with plant-based nutrition, exercise, natural remedies and, when it's needed, conventional medicine.</p>
       <p>We're a Christian ministry, and we care for the whole person. This class is a free introduction to the approach we use at the center.</p>
+      </div>
     </div>
   </div>
 </section>
 
 <section class="faq">
-  <div class="wrap narrow">
-    <h2>Questions</h2>
+  <div class="wrap faq-grid">
+    <div class="faq-side">
+      <h2>Questions</h2>
+      <p>Still not sure? Call Wildwood at <a href="tel:+17068201493">(706) 820-1493</a>.</p>
+      <img src="assets/photos/group.webp" width="410" height="250" loading="lazy" alt="Five smiling women of different ages standing arm in arm">
+    </div>
+    <div class="faq-list">
     <details><summary>Is it really free?</summary><p>Yes. There's no charge and you don't need a credit card to sign up.</p></details>
     <details><summary>What if I can't make the live class?</summary><p>Sign up anyway. We'll email everyone the recording afterwards.</p></details>
     <details><summary>Should I stop taking my medication?</summary><p>No. Please don't change any medication without talking to your doctor. As your blood sugar improves, your doctor can adjust your dose. We'll talk about how to bring this up with them.</p></details>
     <details><summary>I have type 1 diabetes. Is this for me?</summary><p>Type 1 can't be reversed, but the same habits can still help with blood sugar control and overall health. You're welcome to join.</p></details>
     <details><summary>Do I need to be a Seventh-day Adventist?</summary><p>No. Everyone is welcome.</p></details>
     <details><summary>What happens after the class?</summary><p>If you want more help, we'll tell you about our programs at the center and online. There's no obligation.</p></details>
+    </div>
   </div>
 </section>
 
